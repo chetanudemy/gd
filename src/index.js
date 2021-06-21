@@ -8,7 +8,7 @@ import { AuthContextProvider } from './Store/Auth';
 
 ReactDOM.render(
   <AuthContextProvider>
-    <BrowserRouter>
+    <BrowserRouter basename='https://chetanudemy.github.io/gd/'>
       <React.StrictMode>
         <App />
       </React.StrictMode>
