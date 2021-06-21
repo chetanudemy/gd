@@ -30,7 +30,7 @@ function App() {
         )}
       </Route>
       <Route path='*'>
-        <Notfound />
+        <Redirect to='/sign-in' />
       </Route>
     </Switch>
   );
