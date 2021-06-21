@@ -2,7 +2,7 @@
   "name": "june18",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://chetanudemy.github.io/adminPro",
+  "homepage": "http://chetanudemy.github.io/gd",
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
