@@ -6,6 +6,7 @@ import { AuthContext } from './Store/Auth';
 import { useContext } from 'react';
 import Notfound from './Pages/Notfound';
 import Layout from './Component/Layout/Layout';
+import Expense from './Pages/Expense/Expense';
 
 function App() {
   const context = useContext(AuthContext);
@@ -20,7 +21,7 @@ function App() {
       <Route path='/sign-up'>
         {!context.isLoggedIn ? <SignUp /> : <Redirect to='/Dashboard' />}
       </Route>
-      <Route path='/dashboard'>
+      <Route path='/Dashboard'>
         {context.isLoggedIn ? (
           <Layout>
             <Dashboard />
@@ -29,8 +30,17 @@ function App() {
           <Redirect to='/sign-in' />
         )}
       </Route>
+      <Route path='/Expense'>
+        {context.isLoggedIn ? (
+          <Layout>
+            <Expense />
+          </Layout>
+        ) : (
+          <Redirect to='/sign-in' />
+        )}
+      </Route>
       <Route path='*'>
-        <Redirect to='/sign-in' />
+        <Notfound />
       </Route>
     </Switch>
   );

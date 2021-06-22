@@ -68,7 +68,7 @@ export default function SignIn(props) {
         )
         .then((response) => {
           context.login(response.data.idToken);
-          history.replace('/dashboard');
+          history.replace('/Dashboard');
         })
         .catch((error) => {
           setALert(true);
