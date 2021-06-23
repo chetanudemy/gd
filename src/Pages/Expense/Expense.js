@@ -35,7 +35,7 @@ const Expense = () => {
   return (
     <>
       <Container component='main' className={classes.heroContent}>
-        <Grid container>
+        <Grid container spacing={2}>
           <Grid item md={4} className={classes.paper}>
             <Paper>
               <Typography
@@ -47,7 +47,7 @@ const Expense = () => {
               </Typography>
               <form className={classes.form} noValidate autoComplete='off'>
                 <Grid container spacing={2}>
-                  <Grid item md={12}>
+                  <Grid item md={12} xs={12}>
                     <TextField
                       autoComplete='fname'
                       name='firstName'
@@ -58,7 +58,7 @@ const Expense = () => {
                       autoFocus
                     />
                   </Grid>
-                  <Grid item md={12}>
+                  <Grid item md={12} xs={12}>
                     <TextField
                       autoComplete='fname'
                       name='firstName'
@@ -69,7 +69,7 @@ const Expense = () => {
                       autoFocus
                     />
                   </Grid>
-                  <Grid item md={12}>
+                  <Grid item md={12} xs={12}>
                     <TextField
                       autoComplete='fname'
                       name='firstName'
@@ -80,7 +80,7 @@ const Expense = () => {
                       autoFocus
                     />
                   </Grid>
-                  <Grid item md={12}>
+                  <Grid item md={12} xs={12}>
                     <TextField
                       autoComplete='fname'
                       name='firstName'
@@ -91,7 +91,7 @@ const Expense = () => {
                       autoFocus
                     />
                   </Grid>{' '}
-                  <Grid item md={12}>
+                  <Grid item md={12} xs={12}>
                     <Button
                       variant='contained'
                       color='primary'
@@ -105,7 +105,7 @@ const Expense = () => {
               </form>
             </Paper>
           </Grid>
-          <Grid item md={8}>
+          <Grid item md={8} xs={12}>
             <TableGD />
           </Grid>
         </Grid>
