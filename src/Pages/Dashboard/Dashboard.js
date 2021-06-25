@@ -20,7 +20,7 @@ import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
+    maxWidth: 346,
   },
   heroContent: {
     padding: theme.spacing(4),
