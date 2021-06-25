@@ -33,84 +33,82 @@ const useStyles = makeStyles((theme) => ({
 const Expense = () => {
   const classes = useStyles();
   return (
-    <>
-      <Container component='main' className={classes.heroContent}>
-        <Grid container spacing={2}>
-          <Grid item md={4} className={classes.paper}>
-            <Paper>
-              <Typography
-                component='h1'
-                variant='h5'
-                align='center'
-                className={classes.p}>
-                Add Expense
-              </Typography>
-              <form className={classes.form} noValidate autoComplete='off'>
-                <Grid container spacing={2}>
-                  <Grid item md={12} xs={12}>
-                    <TextField
-                      autoComplete='fname'
-                      name='firstName'
-                      variant='outlined'
-                      required
-                      fullWidth
-                      label='First Name'
-                      autoFocus
-                    />
-                  </Grid>
-                  <Grid item md={12} xs={12}>
-                    <TextField
-                      autoComplete='fname'
-                      name='firstName'
-                      variant='outlined'
-                      required
-                      fullWidth
-                      label='First Name'
-                      autoFocus
-                    />
-                  </Grid>
-                  <Grid item md={12} xs={12}>
-                    <TextField
-                      autoComplete='fname'
-                      name='firstName'
-                      variant='outlined'
-                      required
-                      fullWidth
-                      label='First Name'
-                      autoFocus
-                    />
-                  </Grid>
-                  <Grid item md={12} xs={12}>
-                    <TextField
-                      autoComplete='fname'
-                      name='firstName'
-                      variant='outlined'
-                      required
-                      fullWidth
-                      label='First Name'
-                      autoFocus
-                    />
-                  </Grid>{' '}
-                  <Grid item md={12} xs={12}>
-                    <Button
-                      variant='contained'
-                      color='primary'
-                      fullWidth
-                      className={classes.button}
-                      startIcon={<SaveIcon />}>
-                      Save
-                    </Button>
-                  </Grid>
+    <Container component='main' className={classes.heroContent}>
+      <Grid container spacing={2}>
+        <Grid item md={4} className={classes.paper}>
+          <Paper>
+            <Typography
+              component='h1'
+              variant='h5'
+              align='center'
+              className={classes.p}>
+              Add Expense
+            </Typography>
+            <form className={classes.form} noValidate autoComplete='off'>
+              <Grid container spacing={2}>
+                <Grid item md={12} xs={12}>
+                  <TextField
+                    autoComplete='fname'
+                    name='firstName'
+                    variant='outlined'
+                    required
+                    fullWidth
+                    label='First Name'
+                    autoFocus
+                  />
                 </Grid>
-              </form>
-            </Paper>
-          </Grid>
-          <Grid item md={8} xs={12}>
-            <TableGD />
-          </Grid>
+                <Grid item md={12} xs={12}>
+                  <TextField
+                    autoComplete='fname'
+                    name='firstName'
+                    variant='outlined'
+                    required
+                    fullWidth
+                    label='First Name'
+                    autoFocus
+                  />
+                </Grid>
+                <Grid item md={12} xs={12}>
+                  <TextField
+                    autoComplete='fname'
+                    name='firstName'
+                    variant='outlined'
+                    required
+                    fullWidth
+                    label='First Name'
+                    autoFocus
+                  />
+                </Grid>
+                <Grid item md={12} xs={12}>
+                  <TextField
+                    autoComplete='fname'
+                    name='firstName'
+                    variant='outlined'
+                    required
+                    fullWidth
+                    label='First Name'
+                    autoFocus
+                  />
+                </Grid>{' '}
+                <Grid item md={12} xs={12}>
+                  <Button
+                    variant='contained'
+                    color='primary'
+                    fullWidth
+                    className={classes.button}
+                    startIcon={<SaveIcon />}>
+                    Save
+                  </Button>
+                </Grid>
+              </Grid>
+            </form>
+          </Paper>
         </Grid>
-      </Container>
-    </>
+        <Grid item md={8} xs={12}>
+          <TableGD />
+        </Grid>
+      </Grid>
+    </Container>
   );
 };
 

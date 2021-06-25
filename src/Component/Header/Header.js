@@ -114,9 +114,10 @@ export default function Header() {
           Dashboard
         </NavLink>
       </MenuItem>
+
       <MenuItem>
-        <NavLink to='/expense' className={classes.menuItem}>
-          Expense
+        <NavLink to='/product' className={classes.menuItem}>
+          Product
         </NavLink>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
@@ -153,8 +154,9 @@ export default function Header() {
               <NavLink to='/Dashboard' className={classes.navlink}>
                 Dashboard
               </NavLink>
-              <NavLink to='/expense' className={classes.navlink}>
-                expense
+
+              <NavLink to='/product' className={classes.navlink}>
+                product
               </NavLink>
               <IconButton
                 edge='end'
