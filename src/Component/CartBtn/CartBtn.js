@@ -5,6 +5,8 @@ import TextField from '@material-ui/core/TextField';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
@@ -37,7 +39,7 @@ const CartBtn = () => {
   return (
     <>
       {cartBtn ? (
-        <CardActions disableSpacing>
+        <CardActions spacing={1}>
           <Button
             variant='contained'
             color='primary'
@@ -45,6 +47,7 @@ const CartBtn = () => {
             onClick={cartClickHandler}>
             Add to Cart
           </Button>
+          {/* <FavoriteIcon color='error' /> */}
         </CardActions>
       ) : (
         <CardActions disableSpacing>
