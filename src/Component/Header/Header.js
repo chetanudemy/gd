@@ -116,10 +116,11 @@ export default function Header() {
       </MenuItem>
 
       <MenuItem>
-        <NavLink to='/product' className={classes.menuItem}>
+        <NavLink to='/Product' className={classes.menuItem}>
           Product
         </NavLink>
       </MenuItem>
+
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           aria-label='account of current user'
@@ -154,10 +155,10 @@ export default function Header() {
               <NavLink to='/Dashboard' className={classes.navlink}>
                 Dashboard
               </NavLink>
-
-              <NavLink to='/product' className={classes.navlink}>
+              <NavLink to='/Product' className={classes.navlink}>
                 product
               </NavLink>
+
               <IconButton
                 edge='end'
                 aria-label='account of current user'

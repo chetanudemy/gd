@@ -1,5 +1,3 @@
-import axios from 'axios';
-import { useState, useEffect } from 'react';
 import TableGD from '../../Component/TableGD/TableGD';
 
 const TABLE_HEADER = [
@@ -11,32 +9,8 @@ const TABLE_HEADER = [
 ];
 
 const List = (props) => {
-  const [list, setList] = useState([]);
   console.log('List Rendering');
-
-  useEffect(() => {
-    axios
-      .get(
-        'https://expensetracker-f61d7-default-rtdb.firebaseio.com/Products.json'
-      )
-      .then((response) => {
-        if (response.data) {
-          let tableData = [];
-          for (const [key, value] of Object.entries(response.data)) {
-            tableData.push({
-              id: key,
-              ...value,
-            });
-          }
-          setList(tableData);
-        }
-      })
-      .catch((error) => {
-        console.log('error');
-      });
-  }, [props.newProduct]);
-
-  return <TableGD thead={TABLE_HEADER} tboday={list} />;
+  return <TableGD thead={TABLE_HEADER} tboday={props.list} />;
 };
 
 export default List;
