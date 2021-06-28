@@ -8,11 +8,15 @@ import BusinessIcon from '@material-ui/icons/Business';
 import CardHeader from '@material-ui/core/CardHeader';
 
 import one from '../../Assets/Img/1.jpg';
-import two from '../../Assets/Img/2.png';
-import three from '../../Assets/Img/6.jpg';
-import four from '../../Assets/Img/4.png';
+import two from '../../Assets/Img/2.jpg';
+import three from '../../Assets/Img/3.jpg';
+import four from '../../Assets/Img/4.jpg';
 import five from '../../Assets/Img/5.jpg';
-import s from '../../Assets/Img/7.png';
+import s from '../../Assets/Img/6.jpg';
+import s2 from '../../Assets/Img/8.jpg';
+import s3 from '../../Assets/Img/9.jpg';
+import s4 from '../../Assets/Img/10.jpg';
+import s5 from '../../Assets/Img/11.jpg';
 import CartBtn from '../../Component/CartBtn/CartBtn';
 
 const useStyles = makeStyles((theme) => ({
@@ -25,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const imgArray = [one, two, three, four, five, s];
+const imgArray = [one, two, three, four, five, s, s2, s3, s4, s5];
 
 const List = ({ list }) => {
   const classes = useStyles();
@@ -38,7 +42,7 @@ const List = ({ list }) => {
               <Card>
                 <CardHeader
                   title={item.name}
-                  subheader='Price: 25$ Rating: '
+                  subheader='Price: 25$ Rating: 3'
                   avatar={<BusinessIcon />}
                   className={classes.headerClor}
                 />

@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
   headerClor: { background: '#E7E9EB', minHeight: '70px' },
   headerContent: {
-    minHeight: '35rem',
+    minHeight: 'auto',
   },
 
   expand: {

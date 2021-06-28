@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
+import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,6 +26,18 @@ const useStyles = makeStyles((theme) => ({
 export default function Cart() {
   const classes = useStyles();
 
+  const [price, setPrice] = useState(10);
+  const [qty, setQty] = useState(2);
+
+  const addQuantity = () => {
+    setQty(qty + 1);
+  };
+
+  const rmQty = () => {
+    if (qty == 1) return;
+    setQty(qty - 1);
+  };
+
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -34,18 +47,18 @@ export default function Cart() {
       />
       <CardContent className={classes.content}>
         <Grid container align='center'>
-          <Grid item md={6} xs={4}>
+          <Grid item md={5} xs={4}>
             <ButtonGroup
               variant='contained'
               color='primary'
               aria-label='contained primary button group'
               size='small'>
-              <Button>-</Button>
-              <Button>+</Button>
+              <Button onClick={rmQty}>-</Button>
+              <Button onClick={addQuantity}>+</Button>
             </ButtonGroup>
           </Grid>
-          <Grid item md={6} xs={8}>
-            <Typography> 25 x 5 = 75$</Typography>
+          <Grid item md={7} xs={8}>
+            <Typography>{`${price} x ${qty} = ${price * qty} $`}</Typography>
           </Grid>
         </Grid>
       </CardContent>

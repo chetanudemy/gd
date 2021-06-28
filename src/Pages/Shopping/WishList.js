@@ -7,22 +7,24 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import BusinessIcon from '@material-ui/icons/Business';
-import one from '../../Assets/Img/1.jpg';
-import two from '../../Assets/Img/2.png';
-import three from '../../Assets/Img/6.jpg';
-import four from '../../Assets/Img/4.png';
-import five from '../../Assets/Img/5.jpg';
-import s from '../../Assets/Img/7.png';
 import { Button, Grid } from '@material-ui/core';
 
-const imgArray = [one, two, three, four, five, s];
+import one from '../../Assets/Img/1.jpg';
+import two from '../../Assets/Img/2.jpg';
+import three from '../../Assets/Img/3.jpg';
+import four from '../../Assets/Img/4.jpg';
+import five from '../../Assets/Img/5.jpg';
+import s from '../../Assets/Img/6.jpg';
+import s2 from '../../Assets/Img/8.jpg';
+import s3 from '../../Assets/Img/9.jpg';
+import s4 from '../../Assets/Img/10.jpg';
+import s5 from '../../Assets/Img/11.jpg';
+
+const imgArray = [one, two, three, four, five, s, s2, s3, s4, s5];
 
 const useStyles = makeStyles((theme) => ({
   root: {
