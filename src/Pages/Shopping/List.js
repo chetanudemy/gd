@@ -38,7 +38,7 @@ const List = ({ list }) => {
               <Card>
                 <CardHeader
                   title={item.name}
-                  subheader='September 14, 2016'
+                  subheader='Price: 25$ Rating: '
                   avatar={<BusinessIcon />}
                   className={classes.headerClor}
                 />

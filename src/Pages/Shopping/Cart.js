@@ -33,8 +33,8 @@ export default function Cart() {
         avatar={<BusinessIcon />}
       />
       <CardContent className={classes.content}>
-        <Grid container>
-          <Grid item md={6}>
+        <Grid container align='center'>
+          <Grid item md={6} xs={4}>
             <ButtonGroup
               variant='contained'
               color='primary'
@@ -44,7 +44,7 @@ export default function Cart() {
               <Button>+</Button>
             </ButtonGroup>
           </Grid>
-          <Grid item md={6}>
+          <Grid item md={6} xs={8}>
             <Typography> 25 x 5 = 75$</Typography>
           </Grid>
         </Grid>

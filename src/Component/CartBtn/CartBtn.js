@@ -8,9 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
-  inputBox: {
-    width: '50%',
-  },
+  inputBox: {},
 }));
 
 const CartBtn = () => {
@@ -50,8 +48,8 @@ const CartBtn = () => {
         </CardActions>
       ) : (
         <CardActions disableSpacing>
-          <Grid container align='center'>
-            <Grid item xs={6}>
+          <Grid container>
+            <Grid item xs={8}>
               <ButtonGroup
                 variant='contained'
                 color='primary'
@@ -61,7 +59,7 @@ const CartBtn = () => {
                 <Button onClick={addItemHandler}>+</Button>
               </ButtonGroup>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={4}>
               <TextField
                 id='outlined-basic'
                 value={item}
