@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Cart() {
   const classes = useStyles();
-  const theme = useTheme();
 
   return (
     <Card className={classes.root}>

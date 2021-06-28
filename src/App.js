@@ -49,6 +49,15 @@ function App() {
           <Redirect to='/sign-in' />
         )}
       </Route>
+      <Route path='/Shopping'>
+        {context.isLoggedIn ? (
+          <Layout>
+            <Shopping />
+          </Layout>
+        ) : (
+          <Redirect to='/sign-in' />
+        )}
+      </Route>
       <Route path='*'>
         <Redirect to='/sign-in' />
       </Route>
