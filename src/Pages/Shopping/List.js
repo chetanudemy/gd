@@ -3,9 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Card, Container } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import CardMedia from '@material-ui/core/CardMedia';
-
 import BusinessIcon from '@material-ui/icons/Business';
 import CardHeader from '@material-ui/core/CardHeader';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 import one from '../../Assets/Img/1.jpg';
 import two from '../../Assets/Img/2.jpg';
@@ -45,6 +46,7 @@ const List = ({ list }) => {
                   subheader='Price: 25$ Rating: 3'
                   avatar={<BusinessIcon />}
                   className={classes.headerClor}
+                  action={<FavoriteIcon color='error' />}
                 />
                 <CardMedia
                   className={classes.media}

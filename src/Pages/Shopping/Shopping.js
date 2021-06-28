@@ -10,6 +10,7 @@ import CardContent from '@material-ui/core/CardContent';
 import { red } from '@material-ui/core/colors';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import Badge from '@material-ui/core/Badge';
 
 import List from './List';
 import Cart from './Cart';
@@ -90,7 +91,12 @@ const Shopping = () => {
         <Card className={classes.positionSticky}>
           <CardHeader
             title='Cart'
-            avatar={<ShoppingCartIcon />}
+            avatar={
+              <Badge badgeContent={4} color='primary'>
+                <ShoppingCartIcon />
+              </Badge>
+            }
+            subheader='total: 250$'
             className={classes.headerClor}
           />
           <CardContent className={classes.headerContent}>
@@ -104,7 +110,11 @@ const Shopping = () => {
         <Card className={classes.positionSticky}>
           <CardHeader
             title='WishList'
-            avatar={<ShoppingBasketIcon />}
+            avatar={
+              <Badge badgeContent={4} color='primary'>
+                <ShoppingBasketIcon />
+              </Badge>
+            }
             className={classes.headerClor}
           />
           <CardContent className={classes.headerContent}>

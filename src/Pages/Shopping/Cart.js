@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Cart() {
   const classes = useStyles();
 
-  const [price, setPrice] = useState(10);
+  const [price, setPrice] = useState(12);
   const [qty, setQty] = useState(2);
 
   const addQuantity = () => {
