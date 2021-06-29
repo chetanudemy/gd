@@ -37,7 +37,7 @@ const List = ({ list }) => {
       {list &&
         list.map((item) => {
           return (
-            <Grid item md={3} xs={6}>
+            <Grid item md={3} xs={6} key={item.id}>
               <Card>
                 <CardHeader
                   title={item.name}
