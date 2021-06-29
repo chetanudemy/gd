@@ -13,17 +13,17 @@ import { useState } from 'react';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
+    marginTop: '5px',
   },
   content: {
-    paddingBottom: '0px',
-    padding: theme.spacing(1),
+    padding: 5,
   },
   header: {
     padding: theme.spacing(1),
   },
 }));
 
-export default function Cart() {
+export default function Cart(props) {
   const classes = useStyles();
 
   const [price, setPrice] = useState(12);
@@ -39,29 +39,39 @@ export default function Cart() {
   };
 
   return (
-    <Card className={classes.root}>
-      <CardHeader
-        className={classes.header}
-        title='Product A'
-        avatar={<BusinessIcon />}
-      />
-      <CardContent className={classes.content}>
-        <Grid container align='center'>
-          <Grid item md={5} xs={4}>
-            <ButtonGroup
-              variant='contained'
-              color='primary'
-              aria-label='contained primary button group'
-              size='small'>
-              <Button onClick={rmQty}>-</Button>
-              <Button onClick={addQuantity}>+</Button>
-            </ButtonGroup>
-          </Grid>
-          <Grid item md={7} xs={8}>
-            <Typography>{`${price} x ${qty} = ${price * qty} $`}</Typography>
-          </Grid>
-        </Grid>
-      </CardContent>
-    </Card>
+    <>
+      {props.cartItems.map((cart) => {
+        return (
+          <Card className={classes.root} key={cart.id}>
+            <CardHeader
+              className={classes.header}
+              title={cart.name}
+              avatar={<BusinessIcon />}
+            />
+            <CardContent
+              className={classes.content}
+              style={{ paddingBottom: '0px', padding: 5 }}>
+              <Grid container align='center'>
+                <Grid item md={5} xs={4} hidden>
+                  <ButtonGroup
+                    variant='contained'
+                    color='primary'
+                    aria-label='contained primary button group'
+                    size='small'>
+                    <Button onClick={rmQty}>-</Button>
+                    <Button onClick={addQuantity}>+</Button>
+                  </ButtonGroup>
+                </Grid>
+                <Grid item md={7} xs={8}>
+                  <Typography>{`${cart.price} x ${cart.qty} = ${
+                    cart.price * cart.qty
+                  } $`}</Typography>
+                </Grid>
+              </Grid>
+            </CardContent>
+          </Card>
+        );
+      })}
+    </>
   );
 }

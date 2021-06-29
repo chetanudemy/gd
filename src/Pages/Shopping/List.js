@@ -17,6 +17,8 @@ import s3 from '../../Assets/Img/9.jpg';
 import s4 from '../../Assets/Img/10.jpg';
 import s5 from '../../Assets/Img/11.jpg';
 import CartBtn from '../../Component/CartBtn/CartBtn';
+import axios from 'axios';
+import { withSnackbar } from 'notistack';
 
 const useStyles = makeStyles((theme) => ({
   headerContent: {
@@ -30,18 +32,63 @@ const useStyles = makeStyles((theme) => ({
 
 const imgArray = [one, two, three, four, five, s, s2, s3, s4, s5];
 
-const List = ({ list }) => {
+const List = (props) => {
   const classes = useStyles();
+
+  const addtoCart = (item) => {
+    axios
+      .post(
+        'https://expensetracker-f61d7-default-rtdb.firebaseio.com/Cart.json',
+        item
+      )
+      .then((response) => {
+        props.enqueueSnackbar('Product added to Cart.', {
+          anchorOrigin: {
+            vertical: 'top',
+            horizontal: 'right',
+          },
+
+          variant: 'success',
+        });
+      })
+      .catch((error) => {
+        alert('something went wrong');
+      });
+  };
+
+  const addToWish = (item) => {
+    axios
+      .post(
+        'https://expensetracker-f61d7-default-rtdb.firebaseio.com/WishList.json',
+        item
+      )
+      .then((response) => {
+        console.log('ok');
+        props.enqueueSnackbar('Product added to wishList.', {
+          anchorOrigin: {
+            vertical: 'top',
+            horizontal: 'right',
+          },
+
+          variant: 'success',
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        alert('something went wrong!!! - List.js');
+      });
+  };
+
   return (
     <>
-      {list &&
-        list.map((item) => {
+      {props.list &&
+        props.list.map((item) => {
           return (
             <Grid item md={3} xs={6} key={item.id}>
               <Card>
                 <CardHeader
                   title={item.name}
-                  subheader='Price: 25$ Rating: 3'
+                  subheader={`Price:${item.price}$`}
                   avatar={<BusinessIcon />}
                   className={classes.headerClor}
                 />
@@ -50,7 +97,11 @@ const List = ({ list }) => {
                   image={imgArray[Math.floor(Math.random() * imgArray.length)]}
                   title='Paella dish'
                 />
-                <CartBtn />
+                <CartBtn
+                  item={item}
+                  addtoCart={addtoCart}
+                  addToWish={addToWish}
+                />
               </Card>
             </Grid>
           );
@@ -59,4 +110,4 @@ const List = ({ list }) => {
   );
 };
 
-export default List;
+export default withSnackbar(List);

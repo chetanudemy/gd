@@ -11,10 +11,10 @@ import { red } from '@material-ui/core/colors';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import Badge from '@material-ui/core/Badge';
-
 import List from './List';
 import Cart from './Cart';
 import WishList from './WishList';
+import Notification from '../../Component/Notification/Notification';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -47,24 +47,59 @@ const useStyles = makeStyles((theme) => ({
 const Shopping = () => {
   const classes = useStyles();
   const [list, setList] = useState([]);
+  const [cartData, setCartData] = useState([]);
+  const [wishList, setwishData] = useState([]);
+  const [cartTAmt, setcartTAmt] = useState(0);
 
   useEffect(() => {
     axios
-      .get(
-        'https://expensetracker-f61d7-default-rtdb.firebaseio.com/Products.json'
-      )
-      .then((response) => {
-        if (response.data) {
-          let tableData = [];
-          for (const [key, value] of Object.entries(response.data)) {
-            tableData.push({
-              id: key,
-              ...value,
-            });
+      .all([
+        axios.get(
+          'https://expensetracker-f61d7-default-rtdb.firebaseio.com/Products.json'
+        ),
+        axios.get(
+          'https://expensetracker-f61d7-default-rtdb.firebaseio.com/Cart.json'
+        ),
+        axios.get(
+          'https://expensetracker-f61d7-default-rtdb.firebaseio.com/WishList.json'
+        ),
+      ])
+      .then(
+        axios.spread((products, cart, wishList) => {
+          if (products.data) {
+            let tableData = [];
+            for (const [key, value] of Object.entries(products.data)) {
+              tableData.push({
+                id: key,
+                ...value,
+              });
+            }
+            setList(tableData);
           }
-          setList(tableData);
-        }
-      })
+          if (cart.data) {
+            let cartData = [];
+            let cartTotalAmt = 0;
+            for (const [key, value] of Object.entries(cart.data)) {
+              cartTotalAmt =
+                parseInt(value.price) * parseInt(value.qty) + cartTotalAmt;
+              cartData.push({
+                ...value,
+              });
+            }
+            setcartTAmt(cartTotalAmt);
+            setCartData(cartData);
+          }
+          if (wishList.data) {
+            let wishData = [];
+            for (const [key, value] of Object.entries(wishList.data)) {
+              wishData.push({
+                ...value,
+              });
+            }
+            setwishData(wishData);
+          }
+        })
+      )
       .catch((error) => {
         console.log(error);
       });
@@ -76,7 +111,7 @@ const Shopping = () => {
         <Card>
           <CardHeader
             title='Welcome to shopping'
-            subheader='September 14, 2016'
+            subheader='Chetan gd'
             avatar={<BusinessIcon />}
             className={classes.headerClor}
           />
@@ -92,16 +127,16 @@ const Shopping = () => {
           <CardHeader
             title='Cart'
             avatar={
-              <Badge badgeContent={4} color='primary'>
+              <Badge badgeContent={cartData.length} color='primary'>
                 <ShoppingCartIcon />
               </Badge>
             }
-            subheader='total: 250$'
+            subheader={`total: ${cartTAmt}$`}
             className={classes.headerClor}
           />
           <CardContent className={classes.headerContent}>
             <Grid container spacing={2}>
-              <Cart />
+              <Cart cartItems={cartData} />
             </Grid>
           </CardContent>
         </Card>
@@ -111,7 +146,7 @@ const Shopping = () => {
           <CardHeader
             title='WishList'
             avatar={
-              <Badge badgeContent={4} color='primary'>
+              <Badge badgeContent={wishList.length} color='primary'>
                 <ShoppingBasketIcon />
               </Badge>
             }
@@ -119,7 +154,7 @@ const Shopping = () => {
           />
           <CardContent className={classes.headerContent}>
             <Grid container spacing={2}>
-              <WishList />
+              <WishList wishListItem={wishList} />
             </Grid>
           </CardContent>
         </Card>

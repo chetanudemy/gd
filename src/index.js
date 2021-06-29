@@ -5,12 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { AuthContextProvider } from './Store/Auth';
+import { SnackbarProvider } from 'notistack';
 
 ReactDOM.render(
   <AuthContextProvider>
     <BrowserRouter basename='https://chetanudemy.github.io/gd/'>
       <React.StrictMode>
-        <App />
+        <SnackbarProvider maxSnack={3}>
+          <App />
+        </SnackbarProvider>
       </React.StrictMode>
     </BrowserRouter>
   </AuthContextProvider>,

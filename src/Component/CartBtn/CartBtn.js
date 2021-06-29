@@ -5,11 +5,11 @@ import TextField from '@material-ui/core/TextField';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Rating from '@material-ui/lab/Rating';
-import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { useState } from 'react';
@@ -20,28 +20,41 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CartBtn = () => {
+const CartBtn = ({ item, addtoCart, addToWish }) => {
   const classes = useStyles();
 
   const [cartBtn, setCartBtn] = useState(true);
-  const [item, setItem] = useState(1);
-  const [rating, setRating] = useState(3);
+  const [qty, setqty] = useState(1);
+  const [rating, setRating] = useState(item.rating);
 
   const cartClickHandler = () => {
     setCartBtn(!cartBtn);
   };
 
   const addItemHandler = () => {
-    setItem(item + 1);
+    setqty(qty + 1);
   };
 
   const removeItemHandler = () => {
-    if (item === 1) {
+    if (qty === 1) {
       setCartBtn(true);
-      setItem(1);
+      setqty(1);
       return;
     }
-    setItem(item - 1);
+    setqty(qty - 1);
+  };
+
+  const addToClickHandler = () => {
+    setqty(1);
+    setCartBtn(true);
+    addtoCart({
+      ...item,
+      qty: qty,
+    });
+  };
+
+  const wishListClickHandler = () => {
+    addToWish(item);
   };
 
   return (
@@ -66,7 +79,7 @@ const CartBtn = () => {
                 <Button onClick={cartClickHandler}>
                   <ShoppingCartIcon fontSize='small' />
                 </Button>
-                <Button>
+                <Button onClick={wishListClickHandler}>
                   <ShoppingBasketIcon fontSize='small' />
                 </Button>
               </ButtonGroup>
@@ -82,14 +95,18 @@ const CartBtn = () => {
                 color='primary'
                 aria-label='contained primary button group'
                 size='small'>
-                <Button onClick={removeItemHandler}>-</Button>
-                <Button onClick={addItemHandler}>+</Button>
+                <Button onClick={removeItemHandler}>
+                  <RemoveIcon fontSize='small' />
+                </Button>
+                <Button onClick={addItemHandler}>
+                  <AddIcon fontSize='small' />
+                </Button>
               </ButtonGroup>
             </Grid>
             <Grid item xs={4} style={{ display: 'flex' }}>
               <TextField
                 id='outlined-basic'
-                value={item}
+                value={qty}
                 variant='outlined'
                 size='small'
                 className={classes.inputBox}
@@ -99,6 +116,17 @@ const CartBtn = () => {
                   },
                 }}
               />
+            </Grid>
+            <Grid item md={12} xs={12} m={1}>
+              <Button
+                variant='contained'
+                color='primary'
+                size='small'
+                fullWidth
+                style={{ marginTop: '2px' }}
+                onClick={addToClickHandler}>
+                Add to Cart
+              </Button>
             </Grid>
           </Grid>
         </CardActions>

@@ -13,7 +13,6 @@ export const AuthContextProvider = (props) => {
   const userIsLoggedIn = token ? true : false;
 
   const loginHandler = (token) => {
-    console.log('token Error');
     localStorage.setItem('token', token);
     setToken(token);
   };

@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function WishList() {
+export default function WishList(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -69,36 +69,42 @@ export default function WishList() {
   };
 
   return (
-    <Card className={classes.root}>
-      <CardHeader
-        avatar={<BusinessIcon />}
-        title='Product A - 25$'
-        className={classes.header}
-      />
+    <>
+      {props.wishListItem.map((wish) => {
+        return (
+          <Card className={classes.root} key={wish.id}>
+            <CardHeader
+              avatar={<BusinessIcon />}
+              title={`${wish.name} - ${wish.price}$`}
+              className={classes.header}
+            />
 
-      <CardActions disableSpacing className={classes.actionBtn}>
-        <Button variant='contained' color='primary' size='small'>
-          Add to cart
-        </Button>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label='show more'>
-          <ExpandMoreIcon />
-        </IconButton>
-      </CardActions>
-      <Collapse in={expanded} timeout='auto' unmountOnExit>
-        <CardContent className={classes.mediacontent}>
-          <CardMedia
-            className={classes.media}
-            image={imgArray[Math.floor(Math.random() * imgArray.length)]}
-            title='Paella dish'
-          />
-        </CardContent>
-      </Collapse>
-    </Card>
+            <CardActions disableSpacing className={classes.actionBtn}>
+              <Button variant='contained' color='primary' size='small'>
+                Add to cart
+              </Button>
+              <IconButton
+                className={clsx(classes.expand, {
+                  [classes.expandOpen]: expanded,
+                })}
+                onClick={handleExpandClick}
+                aria-expanded={expanded}
+                aria-label='show more'>
+                <ExpandMoreIcon />
+              </IconButton>
+            </CardActions>
+            <Collapse in={expanded} timeout='auto' unmountOnExit>
+              <CardContent className={classes.mediacontent}>
+                <CardMedia
+                  className={classes.media}
+                  image={imgArray[Math.floor(Math.random() * imgArray.length)]}
+                  title='Paella dish'
+                />
+              </CardContent>
+            </Collapse>
+          </Card>
+        );
+      })}
+    </>
   );
 }

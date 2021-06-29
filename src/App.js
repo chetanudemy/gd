@@ -1,5 +1,4 @@
 import { Redirect, Route, Switch } from 'react-router-dom';
-import Dashboard from './Pages/Dashboard/Dashboard';
 import SignIn from './Pages/SignIn/SignIn';
 import SignUp from './Pages/SignUp/SignUp';
 import { AuthContext } from './Store/Auth';
