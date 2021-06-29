@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Card } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import CardHeader from '@material-ui/core/CardHeader';
-import { makeStyles } from '@material-ui/core/styles';
+import { fade, makeStyles } from '@material-ui/core/styles';
 import BusinessIcon from '@material-ui/icons/Business';
 import CardContent from '@material-ui/core/CardContent';
 import { red } from '@material-ui/core/colors';
@@ -14,7 +14,7 @@ import Badge from '@material-ui/core/Badge';
 import List from './List';
 import Cart from './Cart';
 import WishList from './WishList';
-import Notification from '../../Component/Notification/Notification';
+import SearchInput from '../../Component/SearchInput/SearchInput';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -41,6 +41,50 @@ const useStyles = makeStyles((theme) => ({
   positionSticky: {
     position: 'sticky',
     top: '5px',
+  },
+  search: {
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    marginTop: theme.spacing(1),
+    backgroundColor: '#fff',
+    '&:hover': {
+      backgroundColor: '#fff',
+    },
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(1),
+      width: 'auto',
+    },
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
+    },
+  },
+  searchIcon: {
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  inputRoot: {
+    color: 'inherit',
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '12ch',
+      '&:focus': {
+        width: '20ch',
+      },
+    },
   },
 }));
 
@@ -114,6 +158,7 @@ const Shopping = () => {
             subheader='Chetan gd'
             avatar={<BusinessIcon />}
             className={classes.headerClor}
+            action={<SearchInput />}
           />
           <CardContent className={classes.headerContent}>
             <Grid container spacing={2}>
