@@ -32,7 +32,9 @@ const CartBtn = ({ item, addtoCart, addToWish }) => {
   };
 
   const addItemHandler = () => {
-    setqty(qty + 1);
+    setqty((prevState) => {
+      return prevState + 1;
+    });
   };
 
   const removeItemHandler = () => {
@@ -41,7 +43,9 @@ const CartBtn = ({ item, addtoCart, addToWish }) => {
       setqty(1);
       return;
     }
-    setqty(qty - 1);
+    setqty((prevState) => {
+      return prevState - 1;
+    });
   };
 
   const addToClickHandler = () => {

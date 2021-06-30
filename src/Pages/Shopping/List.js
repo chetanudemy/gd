@@ -19,6 +19,7 @@ import s5 from '../../Assets/Img/11.jpg';
 import CartBtn from '../../Component/CartBtn/CartBtn';
 import axios from 'axios';
 import { withSnackbar } from 'notistack';
+import SkeletonProducts from '../../Component/Skeleton/SkeletonProduct';
 
 const useStyles = makeStyles((theme) => ({
   headerContent: {
@@ -81,7 +82,10 @@ const List = (props) => {
 
   return (
     <>
-      {props.list &&
+      {props.showSkelton ? (
+        <SkeletonProducts />
+      ) : (
+        props.list &&
         props.list.map((item) => {
           return (
             <Grid item md={3} xs={6} key={item.id}>
@@ -105,7 +109,8 @@ const List = (props) => {
               </Card>
             </Grid>
           );
-        })}
+        })
+      )}
     </>
   );
 };

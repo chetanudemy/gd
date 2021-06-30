@@ -69,6 +69,8 @@ const Add = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
     setLoading(true);
+    const IMG = Math.floor(Math.random() * 11) + 1;
+    const imgName = IMG + '.jpg';
     axios
       .post(
         'https://expensetracker-f61d7-default-rtdb.firebaseio.com/Products.json',
@@ -78,6 +80,7 @@ const Add = (props) => {
           description: desc,
           manufactureDate: cdate,
           rating: rating,
+          image: imgName,
         }
       )
       .then((response) => {

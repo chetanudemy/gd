@@ -2,6 +2,7 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import Typography from '@material-ui/core/Typography';
+import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -50,8 +51,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SearchInput = () => {
+const SearchInput = (props) => {
   const classes = useStyles();
+  const [txt, setTxt] = useState('');
+
+  const changeHandler = (event) => {
+    setTxt(event.target.value);
+    props.onChange(event.target.value);
+  };
+
   return (
     <div className={classes.search}>
       <div className={classes.searchIcon}>
@@ -64,6 +72,9 @@ const SearchInput = () => {
           input: classes.inputInput,
         }}
         inputProps={{ 'aria-label': 'search' }}
+        name='searchTxt'
+        value={txt}
+        onChange={changeHandler}
       />
     </div>
   );

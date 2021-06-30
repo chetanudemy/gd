@@ -23,40 +23,15 @@ import s2 from '../../Assets/Img/8.jpg';
 import s3 from '../../Assets/Img/9.jpg';
 import s4 from '../../Assets/Img/10.jpg';
 import s5 from '../../Assets/Img/11.jpg';
+import SkeletonCart from '../../Component/Skeleton/SkeletonCart';
+import Avatar from '@material-ui/core/Avatar';
 
 const imgArray = [one, two, three, four, five, s, s2, s3, s4, s5];
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-    border: '1px solid black',
-    borderRadius: '6px',
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
-  avatar: {
-    backgroundColor: red[500],
-  },
-  actionBtn: {
-    padding: theme.spacing(1),
-  },
-  header: {
-    padding: 5,
-  },
-  mediacontent: {
-    padding: 5,
+    marginTop: theme.spacing(1),
   },
 }));
 
@@ -70,41 +45,31 @@ export default function WishList(props) {
 
   return (
     <>
-      {props.wishListItem.map((wish) => {
-        return (
-          <Card className={classes.root} key={wish.id}>
-            <CardHeader
-              avatar={<BusinessIcon />}
-              title={`${wish.name} - ${wish.price}$`}
-              className={classes.header}
-            />
-
-            <CardActions disableSpacing className={classes.actionBtn}>
-              <Button variant='contained' color='primary' size='small'>
-                Add to cart
-              </Button>
-              <IconButton
-                className={clsx(classes.expand, {
-                  [classes.expandOpen]: expanded,
-                })}
-                onClick={handleExpandClick}
-                aria-expanded={expanded}
-                aria-label='show more'>
-                <ExpandMoreIcon />
-              </IconButton>
-            </CardActions>
-            <Collapse in={expanded} timeout='auto' unmountOnExit>
-              <CardContent className={classes.mediacontent}>
-                <CardMedia
-                  className={classes.media}
-                  image={imgArray[Math.floor(Math.random() * imgArray.length)]}
-                  title='Paella dish'
-                />
-              </CardContent>
-            </Collapse>
-          </Card>
-        );
-      })}
+      {props.showSkelton ? (
+        <SkeletonCart />
+      ) : (
+        props.wishListItem.map((wish) => {
+          return (
+            <Card className={classes.root} key={wish.id}>
+              <CardHeader
+                avatar={<BusinessIcon />}
+                title={`${wish.name}`}
+                subheader={`${wish.price}$`}
+                className={classes.header}
+                action={
+                  <Avatar
+                    variant='square'
+                    alt='Remy Sharp'
+                    size='large'
+                    // style={{ height: '80%', width: '100%' }}
+                    src={imgArray[Math.floor(Math.random() * imgArray.length)]}
+                  />
+                }
+              />
+            </Card>
+          );
+        })
+      )}
     </>
   );
 }

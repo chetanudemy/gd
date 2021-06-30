@@ -94,6 +94,8 @@ const Shopping = () => {
   const [cartData, setCartData] = useState([]);
   const [wishList, setwishData] = useState([]);
   const [cartTAmt, setcartTAmt] = useState(0);
+  const [showSkelton, setshowSkelton] = useState(true);
+  const [allProd, setallProd] = useState([]);
 
   useEffect(() => {
     axios
@@ -119,6 +121,7 @@ const Shopping = () => {
               });
             }
             setList(tableData);
+            setallProd(tableData);
           }
           if (cart.data) {
             let cartData = [];
@@ -142,12 +145,25 @@ const Shopping = () => {
             }
             setwishData(wishData);
           }
+
+          setshowSkelton(false);
         })
       )
       .catch((error) => {
         console.log(error);
       });
   }, []);
+
+  const productSearchHandler = (enteredTxt) => {
+    if (enteredTxt.trim() && list && list.length > 0) {
+      let searchedProducts = list.filter((item) => {
+        return item.name.includes(enteredTxt.trim());
+      });
+      setList(searchedProducts);
+    } else {
+      setList(allProd);
+    }
+  };
 
   return (
     <Grid container spacing={1} className={classes.heroContent}>
@@ -158,11 +174,11 @@ const Shopping = () => {
             subheader='Chetan gd'
             avatar={<BusinessIcon />}
             className={classes.headerClor}
-            action={<SearchInput />}
+            action={<SearchInput onChange={productSearchHandler} />}
           />
           <CardContent className={classes.headerContent}>
             <Grid container spacing={2}>
-              <List list={list} />
+              <List list={list} showSkelton={showSkelton} />
             </Grid>
           </CardContent>
         </Card>
@@ -181,7 +197,7 @@ const Shopping = () => {
           />
           <CardContent className={classes.headerContent}>
             <Grid container spacing={2}>
-              <Cart cartItems={cartData} />
+              <Cart cartItems={cartData} showSkelton={showSkelton} />
             </Grid>
           </CardContent>
         </Card>
@@ -199,7 +215,7 @@ const Shopping = () => {
           />
           <CardContent className={classes.headerContent}>
             <Grid container spacing={2}>
-              <WishList wishListItem={wishList} />
+              <WishList wishListItem={wishList} showSkelton={showSkelton} />
             </Grid>
           </CardContent>
         </Card>
