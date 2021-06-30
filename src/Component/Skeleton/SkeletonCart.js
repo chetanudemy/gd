@@ -6,7 +6,7 @@ const SkeletonCart = () => {
     <Grid container>
       {Array(1, 2).map((item) => {
         return (
-          <Grid item sm={12} style={{ marginTop: 8 }}>
+          <Grid item sm={12} style={{ marginTop: 8 }} key={item}>
             <Skeleton variant='rect' width={210} height={50} />
           </Grid>
         );

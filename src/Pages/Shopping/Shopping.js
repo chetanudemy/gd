@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Card } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import CardHeader from '@material-ui/core/CardHeader';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import BusinessIcon from '@material-ui/icons/Business';
 import CardContent from '@material-ui/core/CardContent';
 import { red } from '@material-ui/core/colors';
@@ -15,6 +15,7 @@ import List from './List';
 import Cart from './Cart';
 import WishList from './WishList';
 import SearchInput from '../../Component/SearchInput/SearchInput';
+import SearchInputMobile from '../../Component/SearchInput/SearchInputMobile';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -86,6 +87,12 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  MobileSearch: {
+    display: 'block',
+    [theme.breakpoints.up('sm')]: {
+      display: 'none',
+    },
+  },
 }));
 
 const Shopping = () => {
@@ -130,6 +137,7 @@ const Shopping = () => {
               cartTotalAmt =
                 parseInt(value.price) * parseInt(value.qty) + cartTotalAmt;
               cartData.push({
+                uid: key,
                 ...value,
               });
             }
@@ -140,6 +148,7 @@ const Shopping = () => {
             let wishData = [];
             for (const [key, value] of Object.entries(wishList.data)) {
               wishData.push({
+                uid: key,
                 ...value,
               });
             }
@@ -178,6 +187,9 @@ const Shopping = () => {
           />
           <CardContent className={classes.headerContent}>
             <Grid container spacing={2}>
+              <Grid item md={12} xs={12} className={classes.MobileSearch}>
+                <SearchInputMobile onChange={productSearchHandler} />
+              </Grid>
               <List list={list} showSkelton={showSkelton} />
             </Grid>
           </CardContent>

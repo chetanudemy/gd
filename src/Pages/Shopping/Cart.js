@@ -62,7 +62,7 @@ export default function Cart(props) {
         props.cartItems &&
         props.cartItems.map((cart) => {
           return (
-            <Card className={classes.root} key={cart}>
+            <Card className={classes.root} key={cart.uid}>
               <CardContent
                 className={classes.content}
                 style={{ paddingBottom: '0px', padding: 5 }}>

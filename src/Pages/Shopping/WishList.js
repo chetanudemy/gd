@@ -1,18 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import IconButton from '@material-ui/core/IconButton';
-import { red } from '@material-ui/core/colors';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import BusinessIcon from '@material-ui/icons/Business';
-import { Button, Grid } from '@material-ui/core';
-
 import one from '../../Assets/Img/1.jpg';
 import two from '../../Assets/Img/2.jpg';
 import three from '../../Assets/Img/3.jpg';
@@ -50,7 +40,7 @@ export default function WishList(props) {
       ) : (
         props.wishListItem.map((wish) => {
           return (
-            <Card className={classes.root} key={wish.id}>
+            <Card className={classes.root} key={wish.uid}>
               <CardHeader
                 avatar={<BusinessIcon />}
                 title={`${wish.name}`}
