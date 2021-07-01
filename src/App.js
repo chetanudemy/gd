@@ -4,7 +4,6 @@ import SignUp from './Pages/SignUp/SignUp';
 import { AuthContext } from './Store/Auth';
 import { useContext } from 'react';
 import Layout from './Component/Layout/Layout';
-import Expense from './Pages/Expense/Expense';
 import Product from './Pages/Product/Product';
 import Shopping from './Pages/Shopping/Shopping';
 
@@ -30,15 +29,7 @@ function App() {
           <Redirect to='/sign-in' />
         )}
       </Route>
-      <Route path='/Expense'>
-        {context.isLoggedIn ? (
-          <Layout>
-            <Expense />
-          </Layout>
-        ) : (
-          <Redirect to='/sign-in' />
-        )}
-      </Route>
+
       <Route path='/Product'>
         {context.isLoggedIn ? (
           <Layout>

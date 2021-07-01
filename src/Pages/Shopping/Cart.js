@@ -19,11 +19,13 @@ import s4 from '../../Assets/Img/10.jpg';
 import s5 from '../../Assets/Img/11.jpg';
 
 import SkeletonCart from '../../Component/Skeleton/SkeletonCart';
+import CardHeader from '@material-ui/core/CardHeader';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     marginTop: '5px',
+    padding: theme.spacing(1),
   },
   content: {
     padding: 5,
@@ -63,41 +65,23 @@ export default function Cart(props) {
         props.cartItems.map((cart) => {
           return (
             <Card className={classes.root} key={cart.uid}>
-              <CardContent
-                className={classes.content}
-                style={{ paddingBottom: '0px', padding: 5 }}>
-                <Grid container align='center'>
-                  {/* <Grid item md={5} xs={4} hidden>
-                  <ButtonGroup
-                    variant='contained'
-                    color='primary'
-                    aria-label='contained primary button group'
-                    size='small'>
-                    <Button onClick={rmQty}>-</Button>
-                    <Button onClick={addQuantity}>+</Button>
-                  </ButtonGroup>
-                </Grid> */}
-                  <Grid item md={7} xs={7}>
-                    <Typography>
-                      <BusinessIcon /> {cart.name}
-                    </Typography>
-                    <Typography variant='overline' display='block'>{`${
-                      cart.price
-                    } x ${cart.qty} = ${cart.price * cart.qty} $`}</Typography>
-                  </Grid>
-                  <Grid item md={5} xs={5}>
-                    <Avatar
-                      variant='square'
-                      alt='Remy Sharp'
-                      size='large'
-                      style={{ height: '80%', width: '100%' }}
-                      src={
-                        imgArray[Math.floor(Math.random() * imgArray.length)]
-                      }
-                    />
-                  </Grid>
-                </Grid>
-              </CardContent>
+              <CardHeader
+                avatar={<BusinessIcon />}
+                title={`${cart.name}`}
+                subheader={`${cart.price} x ${cart.qty} = ${
+                  cart.price * cart.qty
+                } $`}
+                className={classes.header}
+                action={
+                  <Avatar
+                    variant='square'
+                    alt='Remy Sharp'
+                    size='large'
+                    // style={{ height: '80%', width: '100%' }}
+                    src={imgArray[Math.floor(Math.random() * imgArray.length)]}
+                  />
+                }
+              />
             </Card>
           );
         })
