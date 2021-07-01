@@ -77,7 +77,6 @@ export default function Cart(props) {
                     variant='square'
                     alt='Remy Sharp'
                     size='large'
-                    // style={{ height: '80%', width: '100%' }}
                     src={imgArray[Math.floor(Math.random() * imgArray.length)]}
                   />
                 }
