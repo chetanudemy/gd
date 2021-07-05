@@ -1,10 +1,7 @@
 import React from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import BusinessIcon from '@material-ui/icons/Business';
-import { Typography } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
 import { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import one from '../../Assets/Img/1.jpg';
@@ -20,6 +17,8 @@ import s5 from '../../Assets/Img/11.jpg';
 
 import SkeletonCart from '../../Component/Skeleton/SkeletonCart';
 import CardHeader from '@material-ui/core/CardHeader';
+
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,6 +42,7 @@ const imgArray = [one, two, three, four, five, s, s2, s3, s4, s5];
 
 export default function Cart(props) {
   const classes = useStyles();
+  const cartItems = useSelector((state) => state.cartItems);
 
   const [price, setPrice] = useState(12);
   const [qty, setQty] = useState(2);
@@ -61,8 +61,8 @@ export default function Cart(props) {
       {props.showSkelton ? (
         <SkeletonCart />
       ) : (
-        props.cartItems &&
-        props.cartItems.map((cart) => {
+        cartItems &&
+        cartItems.map((cart) => {
           return (
             <Card className={classes.root} key={cart.uid}>
               <CardHeader

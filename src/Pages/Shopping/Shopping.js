@@ -17,6 +17,8 @@ import WishList from './WishList';
 import SearchInput from '../../Component/SearchInput/SearchInput';
 import SearchInputMobile from '../../Component/SearchInput/SearchInputMobile';
 
+import { useSelector, useDispatch } from 'react-redux';
+
 const useStyles = makeStyles((theme) => ({
   heroContent: {
     padding: theme.spacing(2),
@@ -24,6 +26,8 @@ const useStyles = makeStyles((theme) => ({
   headerClor: { background: '#E7E9EB', minHeight: '70px' },
   headerContent: {
     minHeight: 'auto',
+    maxHeight: '550px',
+    overflow: 'auto',
   },
 
   expand: {
@@ -104,6 +108,11 @@ const Shopping = () => {
   const [showSkelton, setshowSkelton] = useState(true);
   const [allProd, setallProd] = useState([]);
 
+  const cartReduxCOunt = useSelector((state) => state.cart);
+  const wishReduxCOunt = useSelector((state) => state.wishList);
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
     axios
       .all([
@@ -141,6 +150,7 @@ const Shopping = () => {
                 ...value,
               });
             }
+            dispatch({ type: 'CART', qty: cartData.length, item: cartData });
             setcartTAmt(cartTotalAmt);
             setCartData(cartData);
           }
@@ -152,6 +162,11 @@ const Shopping = () => {
                 ...value,
               });
             }
+            dispatch({
+              type: 'WISHLIST',
+              qty: wishData.length,
+              item: wishData,
+            });
             setwishData(wishData);
           }
 
@@ -185,7 +200,7 @@ const Shopping = () => {
             className={classes.headerClor}
             action={<SearchInput onChange={productSearchHandler} />}
           />
-          <CardContent className={classes.headerContent}>
+          <CardContent>
             <Grid container spacing={2}>
               <Grid item md={12} xs={12} className={classes.MobileSearch}>
                 <SearchInputMobile onChange={productSearchHandler} />
@@ -200,7 +215,7 @@ const Shopping = () => {
           <CardHeader
             title='Cart'
             avatar={
-              <Badge badgeContent={cartData.length} color='primary'>
+              <Badge badgeContent={cartReduxCOunt} color='primary'>
                 <ShoppingCartIcon />
               </Badge>
             }
@@ -209,7 +224,7 @@ const Shopping = () => {
           />
           <CardContent className={classes.headerContent}>
             <Grid container spacing={2}>
-              <Cart cartItems={cartData} showSkelton={showSkelton} />
+              <Cart showSkelton={showSkelton} />
             </Grid>
           </CardContent>
         </Card>
@@ -219,7 +234,7 @@ const Shopping = () => {
           <CardHeader
             title='WishList'
             avatar={
-              <Badge badgeContent={wishList.length} color='primary'>
+              <Badge badgeContent={wishReduxCOunt} color='primary'>
                 <ShoppingBasketIcon />
               </Badge>
             }
@@ -227,7 +242,7 @@ const Shopping = () => {
           />
           <CardContent className={classes.headerContent}>
             <Grid container spacing={2}>
-              <WishList wishListItem={wishList} showSkelton={showSkelton} />
+              <WishList showSkelton={showSkelton} />
             </Grid>
           </CardContent>
         </Card>

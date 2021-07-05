@@ -14,6 +14,8 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { useState } from 'react';
 
+import { useDispatch } from 'react-redux';
+
 const useStyles = makeStyles((theme) => ({
   actionBtn: {
     padding: '2px',
@@ -22,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CartBtn = ({ item, addtoCart, addToWish }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   const [cartBtn, setCartBtn] = useState(true);
   const [qty, setqty] = useState(1);
@@ -49,15 +52,18 @@ const CartBtn = ({ item, addtoCart, addToWish }) => {
   };
 
   const addToClickHandler = () => {
-    setqty(1);
-    setCartBtn(true);
-    addtoCart({
+    const addedItem = {
       ...item,
       qty: qty,
-    });
+    };
+    dispatch({ type: 'CART', qty: qty, item: addedItem });
+    setqty(1);
+    setCartBtn(true);
+    addtoCart(addedItem);
   };
 
   const wishListClickHandler = () => {
+    dispatch({ type: 'WISHLIST', qty: qty, item: item });
     addToWish(item);
   };
 

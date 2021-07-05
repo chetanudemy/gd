@@ -7,16 +7,22 @@ import { BrowserRouter } from 'react-router-dom';
 import { AuthContextProvider } from './Store/Auth';
 import { SnackbarProvider } from 'notistack';
 
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import ShoppingReducer from './Redux/Reducer/ShoppingReducer';
+
+const store = createStore(ShoppingReducer);
+
 ReactDOM.render(
-  <AuthContextProvider>
-    <BrowserRouter basename='https://chetanudemy.github.io/gd/'>
-      <React.StrictMode>
+  <Provider store={store}>
+    <AuthContextProvider>
+      <BrowserRouter basename='https://chetanudemy.github.io/gd/'>
         <SnackbarProvider maxSnack={3}>
           <App />
         </SnackbarProvider>
-      </React.StrictMode>
-    </BrowserRouter>
-  </AuthContextProvider>,
+      </BrowserRouter>
+    </AuthContextProvider>
+  </Provider>,
   document.getElementById('root')
 );
 

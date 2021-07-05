@@ -16,6 +16,8 @@ import s5 from '../../Assets/Img/11.jpg';
 import SkeletonCart from '../../Component/Skeleton/SkeletonCart';
 import Avatar from '@material-ui/core/Avatar';
 
+import { useSelector } from 'react-redux';
+
 const imgArray = [one, two, three, four, five, s, s2, s3, s4, s5];
 
 const useStyles = makeStyles((theme) => ({
@@ -27,6 +29,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function WishList(props) {
   const classes = useStyles();
+  const wishItems = useSelector((state) => state.wishItems);
+
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -38,7 +42,8 @@ export default function WishList(props) {
       {props.showSkelton ? (
         <SkeletonCart />
       ) : (
-        props.wishListItem.map((wish) => {
+        wishItems.length > 0 &&
+        wishItems.map((wish) => {
           return (
             <Card className={classes.root} key={wish.uid}>
               <CardHeader
